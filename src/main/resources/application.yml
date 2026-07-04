@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: sigtr-backend
+    port: 8081
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/sigtr
+    username: postgres
+    password: Ja13e.11
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate   # el esquema lo maneja Flyway, no Hibernate
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: false
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+server:
+  port: 8080
+
+sigtr:
+  jwt:
+    # Cambiar en produccion. Minimo 32 caracteres para HS256.
+    secret: "cambiar-este-secreto-en-produccion-minimo-32-caracteres"
+    expiration-hours: 12
+
+logging:
+  level:
+    com.sigtr: DEBUG
